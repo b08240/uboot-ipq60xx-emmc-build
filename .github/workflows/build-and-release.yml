@@ -58,4 +58,4 @@ jobs:
         with:
           tag_name: ${{env.COMPILE_DATE}}
           files: ./uboot-ipq60xx-emmc-*.bin
-          body_path: ./release_notes.md
+          body_path: ./releasenotes.md
