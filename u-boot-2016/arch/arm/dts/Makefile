@@ -59,11 +59,34 @@ dtb-$(CONFIG_ARCH_IPQ40xx) += ipq40xx-dk01-c1.dtb \
 		ipq40xx-dk07-c4.dtb \
 		ipq40xx-dk01-s1.dtb \
 		ipq40xx-dk06-c1.dtb
+# IPQ6018 设备树配置 ===
+$(info === IPQ6018 板级选择调试 ===)
+$(info CONFIG_TARGET_IPQ6018_JDCLOUD_RE_CS_02  = $(CONFIG_TARGET_IPQ6018_JDCLOUD_RE_CS_02))
+$(info CONFIG_TARGET_IPQ6018_JDCLOUD_RE_CS_07  = $(CONFIG_TARGET_IPQ6018_JDCLOUD_RE_CS_07))
+$(info CONFIG_TARGET_IPQ6018_JDCLOUD_RE_SS_01  = $(CONFIG_TARGET_IPQ6018_JDCLOUD_RE_SS_01))
+$(info CONFIG_TARGET_IPQ6018_REDMI_AX5_JDCLOUD = $(CONFIG_TARGET_IPQ6018_REDMI_AX5_JDCLOUD))
 
-dtb-$(CONFIG_ARCH_IPQ6018) += ipq6018-ax5-jdcloud.dtb \
-			ipq6018-re-ss-01.dtb \
-			ipq6018-re-cs-02.dtb \
-			ipq6018-re-cs-07.dtb
+# 单个板级模式
+ifdef CONFIG_TARGET_IPQ6018_JDCLOUD_RE_CS_02
+$(info 选择: JDCloud AX6600 Athena (RE-CS-02))
+dtb-$(CONFIG_ARCH_IPQ6018) += ipq6018-re-cs-02.dtb
+endif
+
+ifdef CONFIG_TARGET_IPQ6018_JDCLOUD_RE_CS_07
+$(info 选择: JDCloud ER1 (RE-CS-07))
+dtb-$(CONFIG_ARCH_IPQ6018) += ipq6018-re-cs-07.dtb
+endif
+
+ifdef CONFIG_TARGET_IPQ6018_JDCLOUD_RE_SS_01
+$(info 选择: JDCloud AX1800 Pro Arthur (RE-SS-01))
+dtb-$(CONFIG_ARCH_IPQ6018) += ipq6018-re-ss-01.dtb
+endif
+
+ifdef CONFIG_TARGET_IPQ6018_REDMI_AX5_JDCLOUD
+$(info 选择: Redmi AX5 JDCloud)
+dtb-$(CONFIG_ARCH_IPQ6018) += ipq6018-ax5-jdcloud.dtb
+endif
+# IPQ6018 设备树配置 ===
 
 dtb-$(CONFIG_ARCH_ROCKCHIP) += \
 	rk3288-firefly.dtb \

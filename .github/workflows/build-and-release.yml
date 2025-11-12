@@ -29,29 +29,29 @@ jobs:
 
       - name: Compile U-Boot
         run: |
-          ./build.sh
+          ./build.sh build_all
 
-          mv uboot-ipq60xx-emmc.bin uboot-ipq60xx-emmc-"$UBOOT_VERSION".bin
+          # mv uboot-ipq60xx-emmc.bin uboot-ipq60xx-emmc-"$UBOOT_VERSION".bin
 
-      - name: Pad U-Boot
-        run: |
-          FILE=uboot-ipq60xx-emmc-"$UBOOT_VERSION".bin
-          CURRENT_SIZE_IN_BYTES=$(stat -c%s "$FILE")
-          TARGET_SIZE_IN_BYTES=1048576
+      # - name: Pad U-Boot
+      #   run: |
+      #     FILE=uboot-ipq60xx-emmc-"$UBOOT_VERSION".bin
+      #     CURRENT_SIZE_IN_BYTES=$(stat -c%s "$FILE")
+      #     TARGET_SIZE_IN_BYTES=1048576
 
-          echo "文   件：$FILE"
-          echo "当前大小：$CURRENT_SIZE_IN_BYTES Bytes"
-          echo "目标大小：$TARGET_SIZE_IN_BYTES Bytes"
+      #     echo "文   件：$FILE"
+      #     echo "当前大小：$CURRENT_SIZE_IN_BYTES Bytes"
+      #     echo "目标大小：$TARGET_SIZE_IN_BYTES Bytes"
 
-          if [ $CURRENT_SIZE_IN_BYTES -lt $TARGET_SIZE_IN_BYTES ]; then
-              echo "文件当前大小小于目标大小，正在填充..."
-              truncate -s $TARGET_SIZE_IN_BYTES "$FILE"
-              echo "填充完成！"
-          elif [ $CURRENT_SIZE_IN_BYTES -eq $TARGET_SIZE_IN_BYTES ]; then
-              echo "文件已经是目标大小！"
-          else
-              echo "WARNING！文件当前大小大于目标大小！"
-          fi
+      #     if [ $CURRENT_SIZE_IN_BYTES -lt $TARGET_SIZE_IN_BYTES ]; then
+      #         echo "文件当前大小小于目标大小，正在填充..."
+      #         truncate -s $TARGET_SIZE_IN_BYTES "$FILE"
+      #         echo "填充完成！"
+      #     elif [ $CURRENT_SIZE_IN_BYTES -eq $TARGET_SIZE_IN_BYTES ]; then
+      #         echo "文件已经是目标大小！"
+      #     else
+      #         echo "WARNING！文件当前大小大于目标大小！"
+      #     fi
 
       - name: Release U-Boot
         uses: softprops/action-gh-release@master
