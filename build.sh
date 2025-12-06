@@ -31,8 +31,12 @@ fi
 # 日志文件设置
 LOG_FILE=""
 setup_logging() {
+    if [ ! -d "${SCRIPT_DIR}/bin/${COMPILE_DATE}" ]; then
+        mkdir -p "${SCRIPT_DIR}/bin/${COMPILE_DATE}"
+    fi
+
     if [ -z "$LOG_FILE" ]; then
-        LOG_FILE="${SCRIPT_DIR}/log-${COMPILE_DATE}.txt"
+        LOG_FILE="${SCRIPT_DIR}/bin/${COMPILE_DATE}/log-${COMPILE_DATE}.txt"
         echo "日志文件: $(basename "$LOG_FILE")"
         echo "==========================================" >> "$LOG_FILE"
         echo "编译开始时间: $(TZ=UTC-8 date '+%Y-%m-%d %H:%M:%S')" >> "$LOG_FILE"
@@ -221,8 +225,12 @@ compile_target_after_cache_clean() {
     log_message "转换 elf 到 mbn"
     python3 -B scripts_mbn/elftombn.py -f ./u-boot -o ./u-boot.mbn -v 6
 
-	local output_file="${SCRIPT_DIR}/uboot-ipq60xx-emmc-${target_name}-${uboot_version}.bin"
-    log_message "移动 u-boot.mbn 到根目录并重命名"
+    if [ ! -d "${SCRIPT_DIR}/bin/${COMPILE_DATE}" ]; then
+        mkdir -p "${SCRIPT_DIR}/bin/${COMPILE_DATE}"
+    fi
+
+	local output_file="${SCRIPT_DIR}/bin/${COMPILE_DATE}/uboot-ipq60xx-emmc-${target_name}-${uboot_version}.bin"
+    log_message "移动 u-boot.mbn 到 bin/${COMPILE_DATE}/ 并重命名"
     mv ./u-boot.mbn "$output_file"
 
     # 调用文件大小检查和填充函数

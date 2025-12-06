@@ -32,7 +32,5 @@ jobs:
         uses: softprops/action-gh-release@master
         with:
           tag_name: ${{env.COMPILE_DATE}}
-          files: |
-            ./log-*.txt
-            ./uboot-ipq60xx-emmc-*.bin
+          files: ./bin/${{env.COMPILE_DATE}}/*
           body_path: ./releasenotes.md
