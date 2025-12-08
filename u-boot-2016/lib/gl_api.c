@@ -98,11 +98,17 @@ void check_button_is_press(void)
 	// 检测哪个按键被按下
     if (button_is_press("reset_key", GL_RESET_BUTTON_IS_PRESS)) {
         button_name = "RESET";
-    } else if (button_is_press("wps_key", GL_WPS_BUTTON_IS_PRESS)) {
+    }
+#ifdef HAS_WPS_KEY
+	else if (button_is_press("wps_key", GL_WPS_BUTTON_IS_PRESS)) {
         button_name = "WPS";
-    } else if (button_is_press("screen_key", GL_SCREEN_BUTTON_IS_PRESS)) {
+    }
+#endif
+#ifdef HAS_SCREEN_KEY
+	else if (button_is_press("screen_key", GL_SCREEN_BUTTON_IS_PRESS)) {
         button_name = "SCREEN";
     }
+#endif
 
 	// 如果任一按键被按下
 	while (button_name != NULL) {
@@ -111,11 +117,17 @@ void check_button_is_press(void)
 
         if (strcmp(button_name, "RESET") == 0) {
             still_pressed = button_is_press("reset_key", GL_RESET_BUTTON_IS_PRESS);
-        } else if (strcmp(button_name, "WPS") == 0) {
+        }
+#ifdef HAS_WPS_KEY
+		else if (strcmp(button_name, "WPS") == 0) {
             still_pressed = button_is_press("wps_key", GL_WPS_BUTTON_IS_PRESS);
-        } else if (strcmp(button_name, "SCREEN") == 0) {
+        }
+#endif
+#ifdef HAS_SCREEN_KEY
+		else if (strcmp(button_name, "SCREEN") == 0) {
             still_pressed = button_is_press("screen_key", GL_SCREEN_BUTTON_IS_PRESS);
         }
+#endif
 
         if (!still_pressed) {
             break;  // 按键已释放

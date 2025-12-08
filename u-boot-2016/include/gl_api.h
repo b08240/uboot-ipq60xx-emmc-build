@@ -8,6 +8,17 @@
 #define GL_WPS_BUTTON_IS_PRESS          0
 #define GL_SCREEN_BUTTON_IS_PRESS       0
 
+#if defined(CONFIG_TARGET_IPQ6018_JDCLOUD_RE_CS_02) || \
+    defined(CONFIG_TARGET_IPQ6018_JDCLOUD_RE_SS_01) || \
+    defined(CONFIG_TARGET_IPQ6018_LINK_NN6000_V1) || \
+    defined(CONFIG_TARGET_IPQ6018_LINK_NN6000_V2)
+#define HAS_WPS_KEY 1
+#endif
+
+#ifdef CONFIG_TARGET_IPQ6018_JDCLOUD_RE_CS_02
+#define HAS_SCREEN_KEY 1
+#endif
+
 #define LED_ON 1
 #define LED_OFF 0
 

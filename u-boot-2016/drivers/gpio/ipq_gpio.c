@@ -211,8 +211,12 @@ void gl_led_init(void)
 void gl_btn_init(void)
 {
 	gl_gpio_init("reset_key");
+#ifdef HAS_WPS_KEY
 	gl_gpio_init("wps_key");
+#endif
+#ifdef HAS_SCREEN_KEY
 	gl_gpio_init("screen_key");
+#endif
 
 	/*unsigned int *gpio_base;
 
