@@ -296,8 +296,43 @@ int check_fw_type(void *address){
 	else if (*sign_elf==0x464c457f)
 		return FW_TYPE_ELF;
 	else
-		return -1;
-	return 0;
+		return FW_TYPE_UNKNOWN;
+}
+
+void print_fw_type(int fw_type) {
+	switch (fw_type) {
+		case FW_TYPE_NOR:
+			printf("* The upload file type: SPI-NOR IMGAGE *");
+			break;
+		case FW_TYPE_EMMC:
+			printf("* The upload file type: EMMC IMAGE *");
+			break;
+		case FW_TYPE_QSDK:
+			printf("* The upload file type: QSDK FIRMWARE *");
+			break;
+		case FW_TYPE_UBI:
+			printf("* The upload file type: UBI FIRMWARE *");
+			break;
+		case FW_TYPE_CDT:
+			printf("* The upload file type: CDT *");
+			break;
+		case FW_TYPE_ELF:
+			printf("* The upload file type: ELF *");
+			break;
+		case FW_TYPE_FACTORY_KERNEL6M:
+			printf("* The upload file type: FACTORY FIRMWARE (KERNEL SIZE: 6MB) *");
+			break;
+		case FW_TYPE_FACTORY_KERNEL12M:
+			printf("* The upload file type: FACTORY FIRMWARE (KERNEL SIZE: 12MB) *");
+			break;
+		case FW_TYPE_FIT:
+			printf("* The upload file type: FIT IMAGE *");
+			break;
+		case FW_TYPE_UNKNOWN:
+		default:
+			printf("* The upload file type: UNKNOWN *");
+	}
+	return;
 }
 /*
 

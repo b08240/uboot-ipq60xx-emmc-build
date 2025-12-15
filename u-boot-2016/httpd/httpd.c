@@ -634,6 +634,51 @@ void httpd_appcall(void){
 
 					// if we have collected all data
 					if(hs->upload >= hs->upload_total+strlen(boundary_value)+6){
+						// 检查上传的文件是否正确
+						int fw_type = check_fw_type((void *)WEBFAILSAFE_UPLOAD_RAM_ADDRESS);
+						switch (webfailsafe_upgrade_type) {
+							case WEBFAILSAFE_UPGRADE_TYPE_FIRMWARE:
+								if (fw_type != FW_TYPE_FACTORY_KERNEL6M &&
+									fw_type != FW_TYPE_FACTORY_KERNEL12M &&
+									fw_type != FW_TYPE_QSDK
+								) {
+									printf("\n\n* The upload file is NOT supported FIRMWARE!! *\n\n");
+									print_fw_type(fw_type);
+									webfailsafe_upload_failed = 1;
+								}
+								break;
+							case WEBFAILSAFE_UPGRADE_TYPE_UBOOT:
+								if (fw_type != FW_TYPE_ELF) {
+									printf("\n\n* The upload file is NOT supported UBOOT ELF!! *\n\n");
+									print_fw_type(fw_type);
+									webfailsafe_upload_failed = 1;
+								}
+								break;
+							case WEBFAILSAFE_UPGRADE_TYPE_IMG:
+								if (fw_type != FW_TYPE_EMMC) {
+									printf("\n\n* The upload file is NOT supported EMMC IMG!! *\n\n");
+									print_fw_type(fw_type);
+									webfailsafe_upload_failed = 1;
+								}
+								break;
+							case WEBFAILSAFE_UPGRADE_TYPE_CDT:
+								if (fw_type != FW_TYPE_CDT) {
+									printf("\n\n* The upload file is NOT supported CDT!! *\n\n");
+									print_fw_type(fw_type);
+									webfailsafe_upload_failed = 1;
+								}
+								break;
+							case WEBFAILSAFE_UPGRADE_TYPE_UIMAGE:
+								if (fw_type != FW_TYPE_FIT) {
+									printf("\n\n* The upload file is NOT supported FIT uImage!! *\n\n");
+									print_fw_type(fw_type);
+									webfailsafe_upload_failed = 1;
+								}
+								break;
+							default:
+								printf("\n\n* NOT supported WEBFAILSAFE UPGRADE TYPE!! *");
+								webfailsafe_upload_failed = 1;
+						}
 
 						printf("\n\ndone!\n");
 						led_on("blink_led");
