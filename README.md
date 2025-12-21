@@ -94,7 +94,7 @@ U-Boot 截图示例（[点击此处](./screenshots.md) 查看所有网页截图�
 >
 > [点击此处](http://example.com) 获取 USB 9008 救砖教程及相关文件。
 >
-> [点击此处](http://example.com) 获取经测试可正常使用的 uImage。
+> [点击此处](https://github.com/chenxin527/OWRT-BUILDS/releases?q=UIMAGE-ONLY-IPQ60XX&expanded=true) 获取经测试可正常使用的 uImage。
 
 ### 进 Web 刷机界面
 

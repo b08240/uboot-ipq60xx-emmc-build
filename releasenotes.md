@@ -4,18 +4,7 @@
 
 ### ✨ 功能更新
 
-- 雅典娜支持通过 Screen 键启动 HTTP Server
-
-### 🐛 BUG 修复
-
-- 修复无法启动超过 30MB 的 uImage 的问题
-
-### 📢 其他更新
-
-- 修改 bootcmd 为 bootipq（[点击此处](https://github.com/chenxin527/uboot-ipq60xx-emmc-build/commit/b1682e34c931779f1f46ff4d210777e9b1256f1a) 查看详细说明）
-- 修改 smeminfo 命令的输出内容
-- 检查上传的文件是否正确，不正确则返回 fail.html，并在串口控制台打印相关信息
-- 调整文件上传前填充的内存区域大小，文件上传完成后填充文件之后一定大小的内存区域
+- 添加 bootconfig 命令，用于切换启动分区
 
 ## 📡 支持设备
 
@@ -28,6 +17,6 @@
 
 ## 📸 网页截图
 
-[点击此处](https://github.com/chenxin527/uboot-ipq60xx-emmc-build/blob/5bda947116b50186274a11367528f257d4f52c56/screenshots.md) 查看所有网页截图。
+[点击此处](https://github.com/chenxin527/uboot-ipq60xx-emmc-build/blob/bbcbeac8bf2d4df9714913b171d33a60a1e0be31/screenshots.md) 查看所有网页截图。
 
 ![uboot-index-page](https://github.com/chenxin527/uboot-ipq60xx-emmc-build/blob/42af5d1c143ea42dd02023db5bef45f56677674f/screenshots/uboot-index-page.png)
