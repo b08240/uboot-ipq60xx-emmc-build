@@ -121,7 +121,7 @@ U-Boot 下不区分 LAN / WAN，任意网口均可进入 Web 刷机界面。
 
 连我 NN6000 V1 的 U-Boot 未测试过，因为没有机器。
 
-V1 和 V2 的 U-Boot 只是网口配置不同，其他都一样。若发现 V1 U-Boot 不能正常使用，可刷写 V2 的 U-Boot 测试，看看每个网口是否能正常进 Web。每换一个网口都要断电并重新按 RESET / WPS 键启动 HTTP Server，不要在 HTTP Server 已经启动的时候换网口，这样是进不了 Web 的。
+V1 和 V2 的 U-Boot 只是网口配置不同，其他都一样。若发现 V1 的 U-Boot 不能正常使用，可刷写 V2 的 U-Boot 测试，看看每个网口是否能正常进 Web。每换一个网口都要断电并重新按 RESET / WPS 键启动 HTTP Server，不要在 HTTP Server 已经启动的时候换网口，这样是进不了 Web 的。
 
 ### bootipq 失败后执行 httpd 出错
 
