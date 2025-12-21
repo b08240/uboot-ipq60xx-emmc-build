@@ -233,39 +233,37 @@ static int httpd_findandstore_firstchunk(void){
 
 				// We need to check if file which we are going to download
 				// has correct size (for every type of upgrade)
-
-				// U-Boot
-				if((webfailsafe_upgrade_type == WEBFAILSAFE_UPGRADE_TYPE_UBOOT) && (hs->upload_total > WEBFAILSAFE_UPLOAD_UBOOT_SIZE_IN_BYTES)){
-					printf("## Error: wrong file size, should be less than or equal to: %d bytes!\n", WEBFAILSAFE_UPLOAD_UBOOT_SIZE_IN_BYTES);
-					webfailsafe_upload_failed = 1;
-					file_too_big = 1;
-
-				// ART
-				}
-				else if(webfailsafe_upgrade_type == WEBFAILSAFE_UPGRADE_TYPE_ART){
+				switch (webfailsafe_upgrade_type) {
+					case WEBFAILSAFE_UPGRADE_TYPE_UBOOT:
+						if (hs->upload_total > WEBFAILSAFE_UPLOAD_UBOOT_SIZE_IN_BYTES) {
+							printf("## Error: wrong file size, should be less than or equal to: %d bytes!\n", WEBFAILSAFE_UPLOAD_UBOOT_SIZE_IN_BYTES);
+							webfailsafe_upload_failed = 1;
+							file_too_big = 1;
+						}
+						break;
+					case WEBFAILSAFE_UPGRADE_TYPE_ART:
 #if defined(CONFIG_TARGET_IPQ6018_JDCLOUD_RE_CS_02) || \
-    defined(CONFIG_TARGET_IPQ6018_JDCLOUD_RE_CS_07)
-					// For JDCloud AX6600 (Athena) and JDCloud ER1, ART is 512 KiB
-					art_size = WEBFAILSAFE_UPLOAD_ART_BIG_SIZE_IN_BYTES;
+	defined(CONFIG_TARGET_IPQ6018_JDCLOUD_RE_CS_07)
+						// For JDCloud AX6600 (Athena) and JDCloud ER1, ART is 512 KiB
+						art_size = WEBFAILSAFE_UPLOAD_ART_BIG_SIZE_IN_BYTES;
 #else
-					art_size = WEBFAILSAFE_UPLOAD_ART_SIZE_IN_BYTES;
+						art_size = WEBFAILSAFE_UPLOAD_ART_SIZE_IN_BYTES;
 #endif
-					if (hs->upload_total > art_size){
-						printf("## Error: wrong file size, should be less than or equal to: %d bytes!\n", art_size);
-						webfailsafe_upload_failed = 1;
-						file_too_big = 1;
-					}
-
-				// CDT
-				}
-				else if((webfailsafe_upgrade_type == WEBFAILSAFE_UPGRADE_TYPE_CDT)
-						&& (hs->upload_total > WEBFAILSAFE_UPLOAD_CDT_SIZE_IN_BYTES)
-						){
-
-					printf("## Error: wrong file size, should be less than or equal to: %d bytes!\n", WEBFAILSAFE_UPLOAD_CDT_SIZE_IN_BYTES);
-					webfailsafe_upload_failed = 1;
-					file_too_big = 1;
-
+						if (hs->upload_total > art_size) {
+							printf("## Error: wrong file size, should be less than or equal to: %d bytes!\n", art_size);
+							webfailsafe_upload_failed = 1;
+							file_too_big = 1;
+						}
+						break;
+					case WEBFAILSAFE_UPGRADE_TYPE_CDT:
+						if (hs->upload_total > WEBFAILSAFE_UPLOAD_CDT_SIZE_IN_BYTES) {
+							printf("## Error: wrong file size, should be less than or equal to: %d bytes!\n", WEBFAILSAFE_UPLOAD_CDT_SIZE_IN_BYTES);
+							webfailsafe_upload_failed = 1;
+							file_too_big = 1;
+						}
+						break;
+					default:
+						break;
 				}
 
 				printf("Loading: ");
