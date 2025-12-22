@@ -232,3 +232,54 @@ void print_fw_type(int fw_type) {
 	}
 	return;
 }
+
+int check_fw_compat(const int upgrade_type, const int fw_type, const ulong file_size_in_bytes) {
+	switch (upgrade_type) {
+		case WEBFAILSAFE_UPGRADE_TYPE_FIRMWARE:
+			if (fw_type != FW_TYPE_FACTORY_KERNEL6M &&
+				fw_type != FW_TYPE_FACTORY_KERNEL12M &&
+				fw_type != FW_TYPE_JDCLOUD &&
+				fw_type != FW_TYPE_SYSUPGRADE
+			) {
+				printf("\n\n* The upload file is NOT supported FIRMWARE!! *\n\n");
+				print_fw_type(fw_type);
+				return 1;
+			}
+			break;
+		case WEBFAILSAFE_UPGRADE_TYPE_UBOOT:
+			if (fw_type != FW_TYPE_ELF) {
+				printf("\n\n* The upload file is NOT supported UBOOT ELF!! *\n\n");
+				print_fw_type(fw_type);
+				return 1;
+			}
+			break;
+		case WEBFAILSAFE_UPGRADE_TYPE_IMG:
+			if (fw_type != FW_TYPE_EMMC) {
+				printf("\n\n* The upload file is NOT supported EMMC IMG!! *\n\n");
+				print_fw_type(fw_type);
+				return 1;
+			}
+			break;
+		case WEBFAILSAFE_UPGRADE_TYPE_CDT:
+			if (fw_type != FW_TYPE_CDT) {
+				printf("\n\n* The upload file is NOT supported CDT!! *\n\n");
+				print_fw_type(fw_type);
+				return 1;
+			}
+			break;
+		case WEBFAILSAFE_UPGRADE_TYPE_UIMAGE:
+			if (fw_type != FW_TYPE_FIT) {
+				printf("\n\n* The upload file is NOT supported FIT uImage!! *\n\n");
+				print_fw_type(fw_type);
+				return 1;
+			}
+			break;
+		case WEBFAILSAFE_UPGRADE_TYPE_ART:
+			break;
+		default:
+			printf("\n\n* NOT supported WEBFAILSAFE UPGRADE TYPE!! *");
+			return 1;
+	}
+
+	return 0;
+}
