@@ -236,7 +236,7 @@ static int httpd_findandstore_firstchunk(void){
 				switch (webfailsafe_upgrade_type) {
 					case WEBFAILSAFE_UPGRADE_TYPE_UBOOT:
 						if (hs->upload_total > WEBFAILSAFE_UPLOAD_UBOOT_SIZE_IN_BYTES) {
-							printf("## Error: wrong file size, should be less than or equal to: %d bytes!\n", WEBFAILSAFE_UPLOAD_UBOOT_SIZE_IN_BYTES);
+							printf("## Error: wrong file size, uboot should be less than or equal to: %d bytes!\n", WEBFAILSAFE_UPLOAD_UBOOT_SIZE_IN_BYTES);
 							webfailsafe_upload_failed = 1;
 							file_too_big = 1;
 						}
@@ -250,14 +250,14 @@ static int httpd_findandstore_firstchunk(void){
 						art_size = WEBFAILSAFE_UPLOAD_ART_SIZE_IN_BYTES;
 #endif
 						if (hs->upload_total > art_size) {
-							printf("## Error: wrong file size, should be less than or equal to: %d bytes!\n", art_size);
+							printf("## Error: wrong file size, art should be less than or equal to: %d bytes!\n", art_size);
 							webfailsafe_upload_failed = 1;
 							file_too_big = 1;
 						}
 						break;
 					case WEBFAILSAFE_UPGRADE_TYPE_CDT:
 						if (hs->upload_total > WEBFAILSAFE_UPLOAD_CDT_SIZE_IN_BYTES) {
-							printf("## Error: wrong file size, should be less than or equal to: %d bytes!\n", WEBFAILSAFE_UPLOAD_CDT_SIZE_IN_BYTES);
+							printf("## Error: wrong file size, cdt should be less than or equal to: %d bytes!\n", WEBFAILSAFE_UPLOAD_CDT_SIZE_IN_BYTES);
 							webfailsafe_upload_failed = 1;
 							file_too_big = 1;
 						}
