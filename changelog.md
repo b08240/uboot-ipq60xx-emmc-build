@@ -14,6 +14,7 @@
 
 - 调整文件上传完成后内存填充的起始地址，改用 0 填充内存
 - 调整上传文件大小错误时打印的日志内容
+- 合并 NN6000 V1 & V2 的 U-Boot
 
 ### 📅 [25.12.16](https://github.com/chenxin527/uboot-ipq60xx-emmc-build/releases/tag/25.12.16-15.26.27)
 

@@ -767,15 +767,10 @@ config TARGET_IPQ6018_JDCLOUD_RE_SS_01
     help
         Support for JDCloud AX1800 Pro (Arthur) board
 
-config TARGET_IPQ6018_LINK_NN6000_V1
-    bool "Link NN6000 V1"
+config TARGET_IPQ6018_LINK_NN6000
+    bool "Link NN6000 (V1 & V2)"
     help
-        Support for Link NN6000 V1 board
-
-config TARGET_IPQ6018_LINK_NN6000_V2
-    bool "Link NN6000 V2"
-    help
-        Support for Link NN6000 V2 board
+        Support for Link NN6000 (V1 & V2) board
 
 config TARGET_IPQ6018_REDMI_AX5_JDCLOUD
     bool "Redmi AX5 JDCloud"
